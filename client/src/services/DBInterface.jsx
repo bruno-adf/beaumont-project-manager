@@ -24,5 +24,22 @@ export default class DBInterface {
         }
         return callApi()
     }
-
+    static getProject (projectId) {
+        const callApi = async () => {
+            try {
+                const options = {
+                    method: 'get',
+                    url: `http://localhost:4444/project/${projectId}`,
+                    headers: {
+                        'content-type': 'application/json'
+                    }
+                }
+                const apiRes = await axios.request(options)
+                return apiRes.data;
+            } catch (error) {
+                return error
+            }
+        }
+        return callApi()
+    }
 }

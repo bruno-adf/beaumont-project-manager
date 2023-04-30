@@ -17,7 +17,7 @@ function Page() {
     setProjects(data)
   }
 
-  return (
+  return projects && (
     <Container>
       <Header>
         <AddProjectButton onClick={() => getData()}>+ Adicionar projeto</AddProjectButton>

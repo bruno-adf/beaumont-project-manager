@@ -1,6 +1,7 @@
 import './reset.css'
 import SignIn from './pages/login/Page.jsx'
 import Projects from './pages/projects/Page.jsx'
+import ProjectView from './pages/project/Page.jsx'
 import { BrowserRouter as Router, Routes, Route, Navigate, Outlet } from 'react-router-dom'
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Routes>
           <Route path='/projects' element={<Projects />} />
           <Route path='/signin' element={<SignIn />} />
+          <Route path='/projectview/:projectId' element={<ProjectView/>}/>
         </Routes>
       </Router>
     </div>

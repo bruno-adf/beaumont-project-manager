@@ -1,8 +1,11 @@
 import React from 'react'
 import { GrCircleInformation } from 'react-icons/gr'
 import { Container, InfoContainer,StatusBar, Info, Status } from './Style'
+import { useNavigate } from 'react-router-dom'
 
 function Component({projectId, name, ambientCount, start, end, totalInputs, totalValue, designers}) {
+
+  let navigate = useNavigate()
 
   let backgroundColor
   if(projectId % 2 === 0){
@@ -44,7 +47,7 @@ function Component({projectId, name, ambientCount, start, end, totalInputs, tota
           <p className='subtitle'>Responsável</p>
         </Info>
         <Status>Engenharia</Status>
-        <GrCircleInformation size={'25px'} color={'lightgrey'}/>
+        <GrCircleInformation size={'25px'} color={'lightgrey'} onClick={() => navigate(`/projectview/${projectId}`)}/>
       </InfoContainer>
     </Container>
   )

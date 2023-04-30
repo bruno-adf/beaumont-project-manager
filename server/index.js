@@ -16,6 +16,7 @@ const data = {
     ],
     "projects": [
         {
+            "Id": "0",
             "name": "Kelvin Trindade",
             "clientData": {
                 "number": "(51) 98765-4321",
@@ -61,7 +62,7 @@ const data = {
                 {
                     "name": "Metalon",
                     "supplier": "fornecedor",
-                    "amount": "quantidade",
+                    "amount": "5",
                     "size": "tamanho",
                     "unitaryValue": "valor unitário",
                     "totalValue": "valor total",
@@ -97,6 +98,7 @@ const data = {
             ]
         },
         {
+            "Id": "1",
             "name": "Bruno Aguirre",
             "clientData": {
                 "number": "(51) 98765-4321",
@@ -178,6 +180,7 @@ const data = {
             ]
         },
         {
+            "Id": "2",
             "name": "Kelvin Trindade",
             "clientData": {
                 "number": "(51) 98765-4321",
@@ -259,6 +262,7 @@ const data = {
             ]
         },
         {
+            "Id": "3",
             "name": "Bruno Aguirre",
             "clientData": {
                 "number": "(51) 98765-4321",
@@ -354,4 +358,13 @@ http
 
 app.get('/', (req, res) => {
     res.send(data.projects)
+})
+app.get('/project/:projectId', (req, res) => {
+    const { projectId } = req.params
+    data.projects.map(project => {
+        if(project.Id === projectId){
+        console.log(project)
+        res.send(project)
+        }
+    })
 })
