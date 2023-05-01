@@ -1,13 +1,13 @@
 import React from 'react'
 import { Container } from './Style'
 
-function Popup({ trigger }) {
+function Popup({ trigger, setTrigger }) {
   return trigger && (
     <Container>
       <div className='content'>
         <div className='row'>
           <h1>Editando dados do cliente</h1>
-          <h2>Cancelar</h2>
+          <h2 onClick={() => setTrigger()}>Cancelar</h2>
         </div>
         <div>
           <div className='field'>

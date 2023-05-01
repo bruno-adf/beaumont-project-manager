@@ -50,10 +50,15 @@ export const Section = styled.div`
             margin-bottom: 20px;
             margin-left: 20px;
         }
+        display: flex;
+        justify-content: space-between;
+        .buttons{
+            margin-right: 20px;
+        }
     }
     .Infos{
         div{
-            margin: 10px 0 0 20px;;
+            margin: 10px 0 0 20px;
             font-family: 'Inter', sans-serif;
             font-size: 15px;
         }

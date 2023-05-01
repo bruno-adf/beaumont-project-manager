@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import DBI from '../../services/DBInterface';
 import { Header, Container, AddProjectButton, ProjectsContainer } from './Style'
 import Project from './components/project/Component.jsx'
+import DatePicker from 'react-datepicker'
 
 function Page() {
 
@@ -21,6 +22,7 @@ function Page() {
     <Container>
       <Header>
         <AddProjectButton onClick={() => getData()}>+ Adicionar projeto</AddProjectButton>
+        <DatePicker></DatePicker>
       </Header>
       <ProjectsContainer>
         {projects.map((Item, Id) => {

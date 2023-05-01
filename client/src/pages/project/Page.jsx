@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { Header, RowContainer, Container, Section, Row, Info, InputsContainer } from './Style'
 import EditClientData from './popups/EditClientData/Popup.jsx'
+import EditProjectData from './popups/EditProjectData/Popup.jsx'
 import Input from './components/Input/Component.jsx'
 import { useNavigate, useParams } from 'react-router-dom'
 import DBI from '../../services/DBInterface'
+import { BiEditAlt, BiTrash } from 'react-icons/bi'
 
 function Page() {
 
   const [editClientDataPopup, setEditClientDataPopup] = useState()
+  const [editProjectDataPopup, setEditProjectDataPopup] = useState()
 
   const [data, setData] = useState()
   const { projectId } = useParams();
@@ -18,9 +21,13 @@ function Page() {
     console.log(data)
   }
 
-  const editClientData = () => {
+  function editClientData () {
     if(editClientDataPopup === true) setEditClientDataPopup(false)
     else setEditClientDataPopup(true)
+  }
+  function editProjectData () {
+    if(editProjectDataPopup === true) setEditProjectDataPopup(false)
+    else setEditProjectDataPopup(true)
   }
 
   useEffect(() => {
@@ -32,7 +39,8 @@ function Page() {
   return data && (
     <Container>
       <Header></Header>
-      <EditClientData trigger={editClientDataPopup}/>
+      <EditClientData trigger={editClientDataPopup} setTrigger={editClientData}/>
+      <EditProjectData trigger={editProjectDataPopup} setTrigger={editProjectData}/>
       <p>{projectId}</p>
       <button onClick={() => navigate('/projects')}>voltar</button>
       <button onClick={() => getProject()}>carregar</button>
@@ -41,6 +49,9 @@ function Page() {
           <Section>
             <div className='TitleAndButtons'>
               <h1>{data.name}</h1>
+              <div className='buttons'>
+                  <BiEditAlt className='button' color='#003117' size={'20px'} onClick={() => editClientData()}/>
+              </div>
             </div>
             <div className='Infos'>
               <h2>Dados do cliente:</h2>
@@ -65,6 +76,10 @@ function Page() {
           <Section>
             <div className='TitleAndButtons'>
               <h2>Dados do projeto</h2>
+              <div className='buttons'>
+                  <BiEditAlt className='button' color='#003117' size={'20px'} onClick={() => editProjectData()}/>
+                  <BiTrash style={{marginLeft: '10px'}} className='button' color='#003117' size={'20px'}/>
+              </div>
             </div>
             <div className='Infos'>
               <Info>
@@ -98,6 +113,9 @@ function Page() {
           <Section>
             <div className='TitleAndButtons'>
               <h2>Custos</h2>
+              <div className='buttons'>
+                  <BiEditAlt className='button' color='#003117' size={'20px'}/>
+              </div>
             </div>
             <div className='Infos'>
               <Info>
