@@ -27,10 +27,11 @@ const data = {
             "projectData": {
                 "start": "12/04/2023",
                 "end": "12/05/2023",
-                "ambients": "3",
-                "ambientCount": "Cozinha, quarto, sala",
+                "ambients": ['Cozinha', 'Quarto', 'Sala'],
+                "ambientCount": '3',
                 "batch": "0001",
-                "totalValue": "200000"
+                "totalValue": "200000",
+                "designers": ['Kelvin']
             },
             "costs": {
                 "designers": "15000",

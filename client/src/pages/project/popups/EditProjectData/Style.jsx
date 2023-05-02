@@ -1,73 +1,77 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-    position: fixed;
-    background-color: #00000050;
+export const Background = styled.div`
+    top: 0;
     width: 100vw;
     height: 100vh;
-    top: 0;
+    position: fixed;
+    background-color: #00000050;
+`
+export const Container = styled.div`
+    position: relative;
+    top: 30%;
+    left: 30%;
+
+    width: 450px;
+    height: fit-content;
+    padding: 25px;
+
+    background-color: white;
+    border-radius: 5px;
+
+    display: flexbox;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px 5px;
 
     h1{
+        margin-right: 170px;
+        margin-bottom: 10px;
         font-family: 'Inter', sans-serif;
-        font-weight: Bold;
-        font-size: 30;
-        margin-bottom: 20px;
-    }
-    h3{
-        font-family: 'Inter', sans-serif;
-        font-size: 15px;
-    }
-    h2{
-        color: #003117;
-        font-family: 'Inter', sans-serif;
-        font-size: 15px;
-        margin: 0 2px 15px 0;
-        :hover{
-            cursor: pointer;
-        }
-    }
-
-    input{
-        width: 392px;
-        border-radius: 5px;
-        background-color: #f3f3f3;
-        border-width: 1px;
-        height: 25px;
-        padding-left: 5px;
-    }
-
-    .content{
-        background-color: white;
-        position: fixed;
-        left: 35%;
-        top: 30%;
-        width: 400px;
-        border-radius: 5px;
-        padding: 20px;
-    }
-    .row{
-        display: flexbox;
-        justify-content: space-between;
-        align-items: center;
-        .cpfcelphone{
-            input{
-                width: 180px;
-            }
-        }
-    }
-    .field{
-        margin-top: 10px;
+        font-size: 1rem;
+        font-weight: bold;
     }
 `
 
-export const Confirm = styled.button `
-    margin-top: 25px;
-    width: 190px;
+export const Info = styled.div`
+    ${props => props.big && `
+        width: 440px;
+    `}
+    ${props => props.small && `
+        input{
+            width: 210px;
+        }
+    `}
+    .title{
+        font-family: 'Inter', sans-serif;
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+    .input{
+        border-radius: 5px;
+        border-width: 1px;
+        border-color: #909090;
+        background-color: #F9FBFF;
+        height: 25px;
+        padding-left: 5px;
+    }
+`
+
+export const Confirm = styled.button`
+    margin-top: 12px;
+    width: 218px;
     height: 30px;
     border-radius: 5px;
     border: none;
     background-color: #003117;
     color: white;
+    text-align: center;
+    :hover{cursor: pointer; }
+`
+
+export const Cancel = styled.p`
+    font-family: 'Inter', sans-serif;
+    color: #003117;
     :hover{
         cursor: pointer;
     }
