@@ -10,6 +10,9 @@ export const Header = styled.div`
     width: 100vw;
     background-color: #003117;
     position: sticky;
+    display: flexbox;  
+    justify-content: center;
+    align-items: center;
 `
 export const AddProjectButton = styled.button`
     width: 150px;

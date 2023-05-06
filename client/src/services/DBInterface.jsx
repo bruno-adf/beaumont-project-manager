@@ -2,7 +2,7 @@ import axios from 'axios'
 
 export default class DBInterface {
 
-    static getData () {
+    static getData() {
         const callApi = async () => {
             try {
                 const options = {
@@ -11,9 +11,9 @@ export default class DBInterface {
                     headers: {
                         'content-type': 'application/json'
                     },
-                    data: 
+                    data:
                     {
-                            operation: 'getProjects'
+                        operation: 'getProjects'
                     }
                 }
                 const apiRes = await axios.request(options)
@@ -24,7 +24,7 @@ export default class DBInterface {
         }
         return callApi()
     }
-    static getProject (projectId) {
+    static getProject(projectId) {
         const callApi = async () => {
             try {
                 const options = {
@@ -41,5 +41,43 @@ export default class DBInterface {
             }
         }
         return callApi()
+    }
+    static saveProject(newProjectData) {
+        // const options = {
+        //     method: 'POST',
+        //     url: `http://localhost:4444/saveProject`,
+        //     headers: {
+        //         'content-type': 'application/json'
+        //     },
+        //     data: {
+                
+        //     }
+        // }
+        axios.post(`http://localhost:4444/saveProject`, {
+            "newProjectData": newProjectData
+        },{
+            headers:{
+            'content-type': 'application/json'
+            }
+        })
+
+        // axios.request(options)
+        //     .then((res) => console.log(res.data))
+        //     .catch((error) => {
+        //         console.log(error.response.data)
+        //     })
+
+        // const callApi = async () => {
+        //     try {
+        //         const reqData = {
+        //             newProjectData: JSON.stringify(newProjectData)
+        //         }
+        //         const apiRes = await axios.post('http://localhost:4444/saveProject', reqData, { headers: { "Content-Type": "application/json" } })
+        //         return apiRes.data
+        //     } catch (error) {
+        //         console.log(error)
+        //     }
+        // }
+        // callApi()
     }
 }

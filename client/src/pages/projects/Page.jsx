@@ -13,7 +13,6 @@ function Page() {
   },[])
 
   async function getData () {
-    console.log('botão')
     const data = await DBI.getData()
     setProjects(data)
   }
@@ -22,17 +21,16 @@ function Page() {
     <Container>
       <Header>
         <AddProjectButton onClick={() => getData()}>+ Adicionar projeto</AddProjectButton>
-        <DatePicker></DatePicker>
       </Header>
       <ProjectsContainer>
         {projects.map((Item, Id) => {
           return <Project
           key={Id}
           projectId={Id}
-          name={projects[Id].name}
-          ambientCount={projects[Id].projectData.ambients}
-          start={projects[Id].projectData.start}
-          end={projects[Id].projectData.end}
+          name={projects[Id].clientData.name}
+          ambientCount={projects[Id].projectData.ambientCount}
+          start={new Date(projects[Id].projectData.start).toLocaleDateString("pt-BR")}
+          end={new Date(projects[Id].projectData.end).toLocaleDateString("pt-BR")}
           totalInputs={projects[Id].costs.inputs}
           totalValue={projects[Id].projectData.totalValue}
           designers={projects[Id].name}

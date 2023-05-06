@@ -1,10 +1,15 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Tag, Container } from './Style';
 import { AiOutlineClose } from 'react-icons/ai'
 
-function Component() {
+function Component({onChange, value}) {
 
-    const [tags, setTags] = useState(['Cozinha', 'Sala', 'Quarto']);
+    const [tags, setTags] = useState(value);
+
+    useEffect(() => {
+        onChange(tags)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[tags])
 
     function handleKeyDown(e){
         if(e.key !== 'Enter') return

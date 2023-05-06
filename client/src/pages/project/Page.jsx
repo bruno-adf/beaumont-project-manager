@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Header, RowContainer, Container, Section, Row, Info, InputsContainer } from './Style'
 import EditClientData from './popups/EditClientData/Popup.jsx'
+import EditCostsData from './popups/EditCostsData/Popup.jsx'
 import EditProjectData from './popups/EditProjectData/Popup.jsx'
 import Input from './components/Input/Component.jsx'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -11,14 +12,14 @@ function Page() {
 
   const [editClientDataPopup, setEditClientDataPopup] = useState()
   const [editProjectDataPopup, setEditProjectDataPopup] = useState()
+  const [editCostsDataPopup, setEditCostsDataPopup] = useState()
 
   const [data, setData] = useState()
-  const { projectId } = useParams();
+  const { projectId } = useParams()
 
-  const getProject = async () => {
-    const data = await DBI.getProject(projectId)
-    setData(data)
-    console.log(data)
+  const loadProject = async () => {
+    const response = await DBI.getProject(projectId)
+    setData(response)
   }
 
   function editClientData () {
@@ -29,26 +30,56 @@ function Page() {
     if(editProjectDataPopup === true) setEditProjectDataPopup(false)
     else setEditProjectDataPopup(true)
   }
+  function editCostsData () {
+    if(editCostsDataPopup === true) setEditCostsDataPopup(false)
+    else setEditCostsDataPopup(true)
+  }
+  function loadNewData(projectData, clientData, costsData){
+    var newProjectData = data.projectData;
+    if(projectData !== '')
+    newProjectData = projectData
+
+    var newClientData = data.clientData
+    if(clientData !== '')
+    newClientData = clientData
+
+    var newCostsData = data.costs
+    if(costsData !== '')
+    newCostsData = costsData
+
+    const newData = {
+      ...data,
+      "projectData": newProjectData,
+      "clientData": newClientData,
+      "costs": newCostsData
+    }
+    setData(newData)
+  }
 
   useEffect(() => {
-    getProject()
+    loadProject()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+  useEffect(() => {
+    DBI.saveProject(data)
+  },[data])
 
   let navigate = useNavigate()
 
   return data && (
     <Container>
       <Header></Header>
-      <EditClientData trigger={editClientDataPopup} setTrigger={editClientData}/>
-      <EditProjectData trigger={editProjectDataPopup} setTrigger={editProjectData}/>
+      <EditClientData save={loadNewData} data={data} trigger={editClientDataPopup} setTrigger={editClientData}/>
+      <EditProjectData save={loadNewData} data={data} trigger={editProjectDataPopup} setTrigger={editProjectData}/>
+      <EditCostsData save={loadNewData} data={data} trigger={editCostsDataPopup} setTrigger={editCostsData}/>
       <p>{projectId}</p>
       <button onClick={() => navigate('/projects')}>voltar</button>
-      <button onClick={() => getProject()}>carregar</button>
+      <button onClick={() => loadProject()}>carregar</button>
       <RowContainer>
         <Row>
           <Section>
             <div className='TitleAndButtons'>
-              <h1>{data.name}</h1>
+              <h1>{data.clientData.name}</h1>
               <div className='buttons'>
                   <BiEditAlt className='button' color='#003117' size={'20px'} onClick={() => editClientData()}/>
               </div>
@@ -83,15 +114,15 @@ function Page() {
             </div>
             <div className='Infos'>
               <Info>
-                <h3>{data.projectData.start}</h3>
+                <h3>{new Date(data.projectData.start).toLocaleDateString("pt-BR")}</h3>
                 <p>Início</p>
               </Info>
               <Info>
-                <h3>{data.projectData.end}</h3>
+                <h3>{new Date(data.projectData.end).toLocaleDateString("pt-BR")}</h3>
                 <p>Entrega</p>
               </Info>
               <Info>
-                <h3>{data.projectData.ambientCount}</h3>
+                <h3>{data.projectData.ambients.join(', ')}.</h3>
                 <p>Ambientes</p>
               </Info>
               <Info>
@@ -114,7 +145,7 @@ function Page() {
             <div className='TitleAndButtons'>
               <h2>Custos</h2>
               <div className='buttons'>
-                  <BiEditAlt className='button' color='#003117' size={'20px'}/>
+                  <BiEditAlt className='button' color='#003117' size={'20px'} onClick={() => editCostsData()}/>
               </div>
             </div>
             <div className='Infos'>
