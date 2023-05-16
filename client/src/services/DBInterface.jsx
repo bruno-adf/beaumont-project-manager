@@ -80,4 +80,19 @@ export default class DBInterface {
         // }
         // callApi()
     }
+    static createProject () {
+        const callApi = async () => {
+            try {
+                const options = {
+                    method: 'get',
+                    url: `http://localhost:4444/createProject`
+                }
+                const apiRes = await axios.request(options)
+                return apiRes.data;
+            } catch (error) {
+                return error
+            }
+        }
+        return callApi()
+    }
 }

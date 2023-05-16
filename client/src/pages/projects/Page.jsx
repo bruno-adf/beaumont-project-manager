@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import DBI from '../../services/DBInterface';
 import { Header, Container, AddProjectButton, ProjectsContainer } from './Style'
 import Project from './components/project/Component.jsx'
-import DatePicker from 'react-datepicker'
 
 function Page() {
 
@@ -17,10 +16,15 @@ function Page() {
     setProjects(data)
   }
 
+  async function createProject () {
+    const data = await DBI.createProject()
+    setProjects(data)
+  }
+
   return projects && (
     <Container>
       <Header>
-        <AddProjectButton onClick={() => getData()}>+ Adicionar projeto</AddProjectButton>
+        <AddProjectButton onClick={() => createProject()}>+ Adicionar projeto</AddProjectButton>
       </Header>
       <ProjectsContainer>
         {projects.map((Item, Id) => {
@@ -33,7 +37,7 @@ function Page() {
           end={new Date(projects[Id].projectData.end).toLocaleDateString("pt-BR")}
           totalInputs={projects[Id].costs.inputs}
           totalValue={projects[Id].projectData.totalValue}
-          designers={projects[Id].name}
+          designers={projects[Id].projectData.designers}
           ></Project>
         })}
       </ProjectsContainer>

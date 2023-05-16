@@ -93,3 +93,45 @@ export const InputsContainer = styled.div`
         }
     }
 `
+
+export const Timeline = styled.div`
+    background-color: #ffffff;
+    width: 520px;
+    height: 270px;
+    margin: 20px;
+    overflow: hidden;
+    overflow-y: scroll;
+    ::-webkit-scrollbar{
+        width: 10px;
+        height: 270px;
+    }
+    ::-webkit-scrollbar-track {
+        border-radius: 10px;
+        background-color: #f3f3f3;
+    }
+    ::-webkit-scrollbar-thumb {
+        border: 2px solid #f3f3f3;
+        border-radius: 10px;
+        background-color: #dddddd;
+    }
+    > * {
+        h3{
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-top: 2px;
+        }
+        p{
+            margin-top: 5px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+        }
+
+        box-sizing: border-box;
+        border-radius: 5px;
+        padding: 8px;
+        margin: 0 5px 10px 0;
+        height: 50px;
+        background-color: #f0f0f0;
+    }
+`

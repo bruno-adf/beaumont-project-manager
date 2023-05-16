@@ -19,31 +19,31 @@ function Component({projectId, name, ambientCount, start, end, totalInputs, tota
       <StatusBar style={{backgroundColor: 'red'}}/>
       <InfoContainer style={{backgroundColor: backgroundColor}}>
         <Info>
-          <p>{name}</p>
+          <p>{name !== '' ? name : 'vazio'}</p>
           <p className='subtitle'>Cliente</p>
         </Info>
         <Info>
-          <p>{ambientCount}</p>
+          <p>{ambientCount !== '' ? ambientCount : 'vazio'}</p>
           <p className='subtitle'>Ambientes</p>
         </Info>
         <Info>
-          <p>{start}</p>
+          <p>{start !== 'Invalid Date' ? start : 'vazio'}</p>
           <p className='subtitle'>Início</p>
         </Info>
         <Info>
-          <p>{end}</p>
+          <p>{end !== 'Invalid Date' ? end : 'vazio'}</p>
           <p className='subtitle'>Entrega</p>
         </Info>
         <Info>
-          <p>{totalInputs}</p>
+          <p>{totalInputs !== '' ? totalInputs : 'vazio'}</p>
           <p className='subtitle'>Total insumos</p>
         </Info>
         <Info>
-          <p>{totalValue}</p>
+          <p>{totalValue !== '' ? totalValue : 'vazio'}</p>
           <p className='subtitle'>Valor total</p>
         </Info>
         <Info>
-          <p>{designers}</p>
+          <p>{designers.length !== 0 ? designers[0] : 'vazio'}{designers.length > 1 && designers !== '' && ` +${designers.length - 1}`}</p>
           <p className='subtitle'>Responsável</p>
         </Info>
         <Status>Engenharia</Status>

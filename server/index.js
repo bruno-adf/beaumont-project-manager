@@ -6,6 +6,7 @@ const jsonParser = bodyParser.json()
 const fs = require('fs')
 
 var data = require('./data.json')
+var emptyProject = require('./emptyproject.json')
 const { finished } = require('stream')
 // const data = {
 //     "users": [
@@ -363,9 +364,12 @@ http
     .createServer(app)
     .listen(4444)
 
+//Carregar todos os projetos
 app.get('/', (req, res) => {
     res.send(data.projects)
 })
+
+//Carregar dados de um projeto
 app.get('/project/:projectId', (req, res) => {
     const { projectId } = req.params
     data.projects.map(project => {
@@ -374,6 +378,8 @@ app.get('/project/:projectId', (req, res) => {
         }
     })
 })
+
+//Salvar projeto
 app.post('/saveProject', (req, res) => {
     const { newProjectData } = req.body
     console.log( newProjectData )
@@ -381,6 +387,23 @@ app.post('/saveProject', (req, res) => {
     const index = data.projects.findIndex(obj => obj.id === newProjectData.id)
     data.projects[index] = newProjectData;
     saveData(data)
+})
+
+//Criar projeto
+app.get('/createProject', (req, res) => {
+    const newData = {
+        ...data,
+        "projects":[
+            ...data.projects,
+            {
+                ...emptyProject,
+                "id": data.projects.length.toString()
+            }
+        ]
+    }
+    data = newData
+    saveData()
+    res.send(data.projects)
 })
 
 const saveData = () => { 

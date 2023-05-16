@@ -1,0 +1,30 @@
+{
+    "id": "",
+    "clientData": {
+        "name": "Novo projeto",
+        "number": "",
+        "cpf": "",
+        "address": "",
+        "email": ""
+    },
+    "projectData": {
+        "start": "",
+        "end": "",
+        "ambients": [],
+        "ambientCount": "",
+        "batch": "",
+        "totalValue": "",
+        "designers": []
+    },
+    "costs": {
+        "designers": "",
+        "assembler": "",
+        "freight": "",
+        "factory": "",
+        "taxes": "",
+        "inputs": "",
+        "totalValue": ""
+    },
+    "timeline": [],
+    "inputs": []
+}

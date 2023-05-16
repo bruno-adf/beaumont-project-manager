@@ -17,12 +17,22 @@ function Popup({ data, save, trigger, setTrigger }) {
       setFactory(data.costs.factory)
     } else {
       const costs = {
+        "designers": data.costs.designers,
+        "inputs": data.costs.inputs,
         "assembler": assembler,
         "taxes": taxes,
         "freight": freight,
-        "factory": factory
+        "factory": factory,
+        "totalValue": 
+        parseInt(assembler) +
+        parseInt(taxes) +
+        parseInt(freight) +
+        parseInt(factory) +
+        parseInt(data.costs.inputs) +
+        parseInt(data.costs.designers)
       }
       save('', '', costs)
+      console.log(costs)
     }
     setTrigger()
   }
